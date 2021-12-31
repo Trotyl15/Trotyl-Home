@@ -1,5 +1,5 @@
 body {
-    background-color: #FDEEE9;
+    background-color: #fffdf7;
     /* display:flex; */
     /* align-items:center; */
     vertical-align: middle;
@@ -14,7 +14,7 @@ body {
     height: 40px;
     width: 120px;
     background-color: #ffffff;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #c8c8c8;
     margin: 45px 100px;
     text-align: center;
@@ -22,8 +22,8 @@ body {
     font-family:Arial;
     font-weight: 600;
     text-decoration: none;
-    color: black;
-    
+    color: #675D59;
+    /* box-shadow: 0 0 10px 1px#fff9f7 ; */
 }
 
 .box a:hover{
