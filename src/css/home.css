@@ -28,6 +28,7 @@ body {
 
 .box a:hover{
     background-color: #fff4f4;
+    transition: 200ms;
 }
 
 
