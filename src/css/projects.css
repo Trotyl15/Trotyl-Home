@@ -65,6 +65,7 @@ ul li>a>div>div>h2 {
 }
 
 .home {
+    position: fixed;
     float: left;
     background-color: rgba(0, 140, 255, 0.1);
     margin-left: 50px;
