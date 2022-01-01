@@ -53,7 +53,10 @@ ul li img {
 }
 
 ul li>a>div:hover img {
+    position:relative;
     height: 150px;
+    margin-top:-50px;
+	margin-right: -50px;
     transition: 200ms;
     box-shadow: 0 0 20px 1px #ffd49d;
 }
