@@ -8,7 +8,11 @@ svg {
     opacity: 50%;
     float: left;
 }
-
+.open-in-new{
+    float: right;
+    margin-right: 5px;
+    fill: #947b4c;
+}
 body {
     background-color: #fffccf;
 }
