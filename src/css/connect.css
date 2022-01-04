@@ -4,9 +4,17 @@
 }
 
 svg {
+    color: black;
     height: 50px;
     opacity: 50%;
     float: left;
+}
+i {
+    color: black;
+    font-size: 50px;
+    opacity: 50%;
+    float: left;
+    
 }
 .open-in-new{
     float: right;

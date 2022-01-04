@@ -37,6 +37,12 @@ svg{
     margin-top: 12px;
     fill:#66bea8
 }
+i{
+    float: right;
+    margin-top: 12px;
+    color:#66bea8;
+    font-size: 24px;
+}
 ul li img {
     float: left;
     border-radius: 20px;
