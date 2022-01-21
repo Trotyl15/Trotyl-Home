@@ -1,5 +1,13 @@
+/* html {
+    height: auto;
+} */
+
 body {
+    background: linear-gradient(150deg,#fff7de,#ffe7e3,#e0fbff);
     background-color: #fffdf7;
+    height: auto;
+    background-attachment: fixed;
+    background-size: cover;
     /* display:flex; */
     /* align-items:center; */
     vertical-align: middle;
