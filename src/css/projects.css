@@ -22,7 +22,6 @@ ul li>a>div {
     width: 600px;
     /* background-color: pink; */
     margin: 40px auto;
-    
     text-decoration: none;
     border-radius: 20px;
 }
@@ -88,5 +87,33 @@ ul li>a>div>div>h2 {
 
 .home:hover {
     background-color: rgba(255, 255, 255, 0.4);
+    transition: 200ms;
+}
+
+input{
+    background-color: rgba(255, 255, 255, 0.4);
+    width:40%;
+    height:30px;
+    margin: 10px;
+    font-size: 18px;
+    border:0;
+}
+#submit{
+    
+    background-color: rgba(0, 140, 255, 0.1);
+    box-shadow: 0 0 10px 1px #a3c8c0;
+    font-weight: 700;
+    border:0;
+}
+
+select{
+    background-color: rgba(255, 255, 255, 0.4);
+    height:30px;
+    
+    font-size: 15px;
+}
+
+#submit:hover{
+    background-color: rgba(255, 255, 255, 0.2);
     transition: 200ms;
 }

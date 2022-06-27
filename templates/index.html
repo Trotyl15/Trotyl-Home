@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<link rel="icon" href="{{url_for('static', filename='/img/icon.png')}}" type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<meta name="baidu-site-verification" content="code-lKJORX227j" />
+<meta name="baidu-site-verification" content="code-LxqfL2Ikcc" />
+{% endblock %}
+
+
+{% block body %}
+<div class="box">
+    <div>
+        <img src="{{url_for('static', filename='/img/avatar.png')}}" alt="" height="400px">
+    </div>
+    <div>
+        <a href="/" style="color:#f37f65">Home</a>
+        <a target="_blank" href="https://blog.trotyl.xyz/">Blog</a>
+        <a href="{{url_for('projects')}}">Projects</a>
+        <a href="{{url_for('connect')}}">Connect</a>
+
+    </div>
+</div>
+{% endblock %}
