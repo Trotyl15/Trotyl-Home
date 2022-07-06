@@ -1,6 +1,6 @@
 $(function () {//windows.onload
     $("#name").on('input', function () {
-        $('h2').text($("#name").val());
+        $('h2').html($("#name").val());
     });
 
     $("#icon").change(function () {
