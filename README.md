@@ -1,1 +1,1 @@
-for the use of redirecting [trotyl.xyz] to [www.trotyl.xyz]
+for the use of redirecting [https://trotyl.xyz] to [https://www.trotyl.xyz]
