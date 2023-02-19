@@ -36,6 +36,24 @@ i {
     font-size: 20px;
     margin-top: -2.5px;
 }
+
+
+.switch-text{
+    float: right;
+    margin-right: 5px;
+    margin-left: 0;
+    fill: #947b4c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    opacity: 50%;
+}
+.switch:hover .switch-text{
+    transition: 200ms;
+    opacity: 100%;
+    font-size: 20px;
+    margin-top: -2.5px;
+}
 body {
     background-color: #fffccf;
 }
