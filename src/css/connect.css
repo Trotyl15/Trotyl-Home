@@ -37,7 +37,12 @@ i {
     margin-top: -2.5px;
 }
 
-
+.discord{
+    position: relative;
+}
+.switch{
+    position: relative;
+}
 .switch-text{
     float: right;
     margin-right: 5px;
@@ -56,6 +61,12 @@ i {
 }
 body {
     background-color: #fffccf;
+    -ms-user-select:none;
+    -moz-user-select:none;
+    -webkit-user-select:none;
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    user-select:none;
 }
 
 ul {
@@ -140,4 +151,30 @@ ul li>a>div>div>h2 {
     background-color: rgba(255, 255, 255, 0.4);
     transition: 200ms;
 
+}
+.toast{
+    background: #807c5d;
+    width: 60px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #fffbd6;
+    text-align: center;
+    height: 30px;
+    position: absolute;
+    /* vertical-align: middle; */
+    top: 23px;
+    /* margin: auto; */
+    line-height: 30px;
+    right: 0px;
+    border-radius: 8px;   
+    opacity: 0;
+    padding: 0;
+    transition: 200ms;
+    
+}
+.toast.active{
+    display: block;
+    opacity: 1;
+    top: 14px;
+    transition: 200ms;
 }
