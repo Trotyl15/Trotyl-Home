@@ -9,7 +9,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 
 app = Flask(__name__, static_folder = 'src')
 # app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db'
-app.config['SQLALCHEMY_DATABASE_URI']='${{ DATABASE_URL }}'
+app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL')
 db=SQLAlchemy(app)
 app.config['SECRET_KEY']='thisissecret'
 
