@@ -1,7 +1,7 @@
 $(function () {
     $('.discord').click(function () {
         $('.discord>.toast').addClass("active")
-        var copyText = "Trotyl#0262";
+        var copyText = ".trotyl.";
         copyToClipboard(copyText);
         setTimeout(function() { $('.discord>.toast').removeClass("active"); }, 400);
     })
