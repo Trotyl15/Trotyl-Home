@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vitwo_support.css') }}">
+<title>ViTwo Support</title>
+{% endblock %}
+
+{% block body %}
+<div class="support-shell">
+  <div class="top-bar">
+    <a href="/">← Back to Trotyl Home</a>
+    <span class="pill">ViTwo Support</span>
+  </div>
+
+  <section class="hero">
+    <div>
+      <p class="pill" style="margin:0;">Watch together without the hiccups.</p>
+      <h1>ViTwo Support Page.</h1>
+      <p class="lede">ViTwo is a new app from a solo developer. I can’t support every site, and some may break when their code changes—please reach out and I’ll try to fix it or add support.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0A">Email support</a>
+        <span class="muted">Average reply time: under 1 business day</span>
+      </div>
+    </div>
+    <div class="demo-card">
+      <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/LU8XW8wYs68" title="ViTwo demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="muted" style="margin-top:12px;">Quick demo</p>
+    </div>
+  </section>
+
+  <div class="grid two">
+    <div class="card">
+      <h2>How to use this app</h2>
+      <p>Follow these steps to get your room in sync.</p>
+      <ol class="step-list">
+        <li>
+          <span class="step-index">1</span>
+          <div>
+            <strong>Paste the video link.</strong>
+            <p>Works on most sites—drop the URL into ViTwo.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-index">2</span>
+          <div>
+            <strong>Press “Detect Video.”</strong>
+            <p>ViTwo will read the stream info and show the duration.</p>
+          </div>
+        </li>
+        <li class="step-emphasis">
+          <span class="step-index">3</span>
+          <div>
+            <span class="step-title">Check the video duration.</span>
+            <p class="step-text">If it shows 0:00, press Reload until it updates to the real length.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-index">4</span>
+          <div>
+            <strong>Still stuck?</strong>
+            <p>Change a site or email us using the button above so we can investigate.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Send us a note with the site you’re on and what you expected to see. We’ll reply as quickly as we can.</p>
+      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0A">Open mail with details</a>
+      <p class="muted" style="margin-top:10px;">Please include the url to the site that you were having trouble with.</p>
+    </div>
+
+    <div class="card">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <h3>Where can I find the extension for web?</h3>
+        <p class="muted">Choose your browser store:</p>
+        <div class="link-row">
+          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc" target="_blank">Chrome Web Store</a>
+          <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/vitwo/dendgmbokdpdoemdebmhcefcmkbchpdk" target="_blank">Edge Add-ons</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Built by Trotyl • ViTwo v1.2.0</span>
+    <a href="/">Back to Trotyl Home</a>
+  </div>
+</div>
+{% endblock %}
