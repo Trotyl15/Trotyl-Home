@@ -3,23 +3,48 @@
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/vitwo_support.css') }}">
 <title>ViTwo Support</title>
+<style>
+  .top-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+  .dropdown {
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid #e8e5ef;
+    font-weight: 700;
+    color: #1d1b22;
+    background: #fff;
+  }
+</style>
 {% endblock %}
 
 {% block body %}
 <div class="support-shell">
   <div class="top-bar">
-    <a href="/">← Back to Trotyl Home</a>
+    <a href="{{ marketing_link }}">{{ copy.back }}</a>
     <span class="pill">ViTwo Support</span>
+    <span class="top-actions">
+      <select class="dropdown" onchange="window.location.href=this.value">
+        {% for code, info in languages.items() %}
+          <option value="{{ url_for('vitwo_support', lang_code=code) }}" {% if code == lang_code %}selected{% endif %}>
+            {{ info.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </span>
   </div>
 
   <section class="hero">
     <div>
-      <p class="pill" style="margin:0;">Watch together without the hiccups.</p>
-      <h1>ViTwo Support Page.</h1>
-      <p class="lede">ViTwo is a new app from a solo developer. I can’t support every site, and some may break when their code changes—please reach out and I’ll try to fix it or add support.</p>
+      <p class="pill" style="margin:0;">{{ copy.hero_tag }}</p>
+      <h1>{{ copy.hero_title }}</h1>
+      <p class="lede">{{ copy.hero_body }}</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">Email support</a>
-        <span class="muted">Average reply time: under 1 business day</span>
+        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">{{ copy.cta_button }}</a>
+        <span class="muted">{{ copy.cta_hint }}</span>
       </div>
     </div>
     <div class="demo-card">
@@ -32,55 +57,36 @@
 
   <div class="grid two">
     <div class="card">
-      <h2>How to use this app</h2>
-      <p>Follow these steps to get your room in sync.</p>
+      <h2>{{ copy.how_title }}</h2>
+      <p>{{ copy.how_sub }}</p>
       <ol class="step-list">
-        <li>
-          <span class="step-index">1</span>
-          <div>
-            <strong>Paste the video link.</strong>
-            <p>Works on most sites—drop the URL into ViTwo.</p>
-          </div>
-        </li>
-        <li>
-          <span class="step-index">2</span>
-          <div>
-            <strong>Press “Detect Video.”</strong>
-            <p>ViTwo will read the stream info and show the duration.</p>
-          </div>
-        </li>
-        <li class="step-emphasis">
-          <span class="step-index">3</span>
-          <div>
-            <span class="step-title">Check the video duration.</span>
-            <p class="step-text">If it shows 0:00, switch to the page view, play the video, and press Reload until the correct duration appears.</p>
-          </div>
-        </li>
-        <li>
-          <span class="step-index">4</span>
-          <div>
-            <strong>Still stuck?</strong>
-            <p>Change a site or email us using the button above so we can investigate.</p>
-          </div>
-        </li>
+        {% for step in copy.steps %}
+          <li class="{% if loop.index == 3 %}step-emphasis{% endif %}">
+            <span class="step-index">{{ loop.index }}</span>
+            <div>
+              <strong>{{ step.title }}</strong>
+              <p class="{% if loop.index == 3 %}step-text{% endif %}">{{ step.body }}</p>
+            </div>
+          </li>
+        {% endfor %}
       </ol>
     </div>
 
     <div class="card">
-      <h2>Contact</h2>
-      <p>Send us a note with the site you’re on and what you expected to see. We’ll reply as quickly as we can.</p>
-      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">Open mail with details</a>
-      <p class="muted" style="margin-top:10px;">It helps to include the URL, a screenshot, and the device you’re using.</p>
+      <h2>{{ copy.contact_title }}</h2>
+      <p>{{ copy.contact_body }}</p>
+      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">{{ copy.contact_button }}</a>
+      <p class="muted" style="margin-top:10px;">{{ copy.contact_note }}</p>
     </div>
 
     <div class="card">
-      <h2>FAQ</h2>
+      <h2>{{ copy.faq_title }}</h2>
       <div class="faq-item">
-        <h3>Where can I find the extension for web?</h3>
-        <p class="muted">Choose your browser store:</p>
+        <h3>{{ copy.faq_q1 }}</h3>
+        <p class="muted">{{ copy.faq_sub }}</p>
         <div class="link-row">
-          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc" target="_blank">Chrome Web Store</a>
-          <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/vitwo/dendgmbokdpdoemdebmhcefcmkbchpdk" target="_blank">Edge Add-ons</a>
+          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc" target="_blank">{{ labels.chrome }}</a>
+          <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/vitwo/dendgmbokdpdoemdebmhcefcmkbchpdk" target="_blank">{{ labels.edge }}</a>
         </div>
       </div>
     </div>
@@ -88,7 +94,7 @@
 
   <div class="footer">
     <span>Built by Trotyl • ViTwo v1.0.0</span>
-    <a href="/">Back to Trotyl Home</a>
+    <a href="/">{{ labels.home }}</a>
   </div>
 </div>
 {% endblock %}

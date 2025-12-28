@@ -74,6 +74,7 @@ a:hover {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 24px;
+  align-items: start;
 }
 
 .demo-card {
@@ -252,11 +253,9 @@ a:hover {
   margin-bottom: 4px;
 }
 
-.card p.step-text {
-  /* More specific than .card p so it wins in cascade */
+.step-text {
   color: #ea9960;
   font-weight: 500;
-  margin: 0 0 12px;
 }
 
 .step-emphasis .step-text {
