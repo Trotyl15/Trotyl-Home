@@ -2,8 +2,39 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/vitwo_support.css') }}">
-<title>ViTwo Support</title>
+<title>Menuly Support</title>
 <style>
+  :root {
+    --accent: #D6373D;
+    --primary: #24648F;
+  }
+  body {
+    background: radial-gradient(circle at 10% 20%, rgba(214, 55, 61, 0.08) 0, transparent 25%),
+      radial-gradient(circle at 90% 10%, rgba(36, 100, 143, 0.12) 0, transparent 23%),
+      linear-gradient(135deg, #fffaf4, #f7f8ff);
+  }
+  .pill {
+    background: rgba(214, 55, 61, 0.1);
+    color: #D6373D;
+  }
+  .btn-primary {
+    background: var(--primary);
+    box-shadow: 0 10px 25px rgba(36, 100, 143, 0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 14px 34px rgba(36, 100, 143, 0.45);
+  }
+  .btn-secondary {
+    border: 1px solid rgba(214, 55, 61, 0.2);
+    box-shadow: 0 6px 18px rgba(214, 55, 61, 0.18);
+  }
+  .btn-secondary:hover {
+    box-shadow: 0 10px 24px rgba(214, 55, 61, 0.26);
+  }
+  .step-index {
+    background: rgba(36, 100, 143, 0.1);
+    color: #24648F;
+  }
   .top-actions {
     display: inline-flex;
     align-items: center;
@@ -25,11 +56,11 @@
 <div class="support-shell">
   <div class="top-bar">
     <a href="{{ marketing_link }}">{{ copy.back }}</a>
-    <span class="pill">ViTwo Support</span>
+    <span class="pill">Menuly Support</span>
     <span class="top-actions">
       <select class="dropdown" onchange="window.location.href=this.value">
         {% for code, info in languages.items() %}
-          <option value="{{ url_for('vitwo_support', lang_code=code) }}" {% if code == lang_code %}selected{% endif %}>
+          <option value="{{ url_for('menuly_support', lang_code=code) }}" {% if code == lang_code %}selected{% endif %}>
             {{ info.name }}
           </option>
         {% endfor %}
@@ -43,15 +74,12 @@
       <h1>{{ copy.hero_title }}</h1>
       <p class="lede">{{ copy.hero_body }}</p>
       <div class="cta-row">
-        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">{{ copy.cta_button }}</a>
+        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=Menuly%20Support&body=I%27d%20like%20support%20for%20Menuly:%0AIssue:%0ADevice%20model:%0A">{{ copy.cta_button }}</a>
         <span class="muted">{{ copy.cta_hint }}</span>
       </div>
     </div>
     <div class="demo-card">
-      <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/LU8XW8wYs68" title="ViTwo demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      <p class="muted" style="margin-bottom:0;">Quick demo</p>
+      <img src="{{ url_for('static', filename='img/menuly.png') }}" alt="Menuly app preview" style="width: 100%; border-radius: 12px; display: block;">
     </div>
   </section>
 
@@ -61,13 +89,13 @@
       <p>{{ copy.how_sub }}</p>
       <ol class="step-list">
         {% for step in copy.steps %}
-          <li class="{% if loop.index == 3 %}step-emphasis{% endif %}">
+          <li>
             <span class="step-index">{{ loop.index }}</span>
-          <div>
+            <div>
               <strong>{{ step.title }}</strong>
-              <p class="{% if loop.index == 3 %}step-text{% endif %}">{{ step.body }}</p>
-          </div>
-        </li>
+              <p>{{ step.body }}</p>
+            </div>
+          </li>
         {% endfor %}
       </ol>
     </div>
@@ -75,8 +103,7 @@
     <div class="card">
       <h2>{{ copy.contact_title }}</h2>
       <p>{{ copy.contact_body }}</p>
-      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ViTwo%20Support&body=I%27d%20like%20support%20for%20this%20site:%0AURL:%0ADevice%20model:%0A">{{ copy.contact_button }}</a>
-      <p class="muted" style="margin-top:10px;">{{ copy.contact_note }}</p>
+      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=Menuly%20Support&body=I%27d%20like%20support%20for%20Menuly:%0AIssue:%0ADevice%20model:%0A">{{ copy.contact_button }}</a>
     </div>
 
     <div class="card">
@@ -84,17 +111,14 @@
       <div class="faq-item">
         <h3>{{ copy.faq_q1 }}</h3>
         <p class="muted">{{ copy.faq_sub }}</p>
-        <div class="link-row">
-          <a class="btn btn-secondary" href="https://chromewebstore.google.com/detail/vitwo/ldkgjjafibdipikaopgipdkaifjngblc" target="_blank">{{ labels.chrome }}</a>
-          <a class="btn btn-secondary" href="https://microsoftedge.microsoft.com/addons/detail/vitwo/dendgmbokdpdoemdebmhcefcmkbchpdk" target="_blank">{{ labels.edge }}</a>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="footer">
-    <span>Built by Trotyl • ViTwo v1.0.0</span>
+    <span>Built by Trotyl • Menuly</span>
     <a href="/">{{ labels.home }}</a>
   </div>
 </div>
 {% endblock %}
+

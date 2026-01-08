@@ -12,13 +12,17 @@ from vitwo_content import (
     VITWO_SUPPORT_COPY,
     APPLE_BADGE_LANG,
 )
+from menuly_content import (
+    MENULY_LANGUAGE_CONTENT,
+    MENULY_SUPPORT_COPY,
+)
 
 app = Flask(__name__, static_folder = 'src')
-# app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///test.db'
-app.config['SQLALCHEMY_DATABASE_URI']=os.getenv('DATABASE_URL')
-db=SQLAlchemy(app)
-app.config['SECRET_KEY']='thisissecret'
-
+# Use DATABASE_URL from environment if present, otherwise fall back to a local sqlite file
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL') or 'sqlite:///trotyl.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'thisissecret')
+db = SQLAlchemy(app)
 @app.route('/')
 def home():
 	return render_template('index.html')
@@ -30,6 +34,14 @@ def vitwo_root_redirect():
 @app.route('/vitwo/support')
 def vitwo_support_root_redirect():
     return redirect(url_for('vitwo_support', lang_code='en'))
+
+@app.route('/menuly')
+def menuly_root_redirect():
+    return redirect(url_for('menuly_landing_lang', lang_code='en'))
+
+@app.route('/menuly/support')
+def menuly_support_root_redirect():
+    return redirect(url_for('menuly_support', lang_code='en'))
 
 @app.route('/<lang_code>/vitwo')
 def vitwo_landing_lang(lang_code):
@@ -66,6 +78,35 @@ def vitwo_support(lang_code):
         labels=VITWO_LANGUAGE_CONTENT[lang_key]["labels"],
         copy=VITWO_SUPPORT_COPY[lang_key],
         languages=VITWO_LANGUAGE_CONTENT,
+        lang_code=lang_key,
+    )
+
+@app.route('/<lang_code>/menuly')
+def menuly_landing_lang(lang_code):
+    lang_key = (lang_code or "").lower()
+    content = MENULY_LANGUAGE_CONTENT.get(lang_key)
+    if not content:
+        return redirect(url_for('menuly_landing_lang', lang_code='en'))
+
+    return render_template(
+        'menuly/info.html',
+        content=content,
+        lang_code=lang_key,
+        languages=MENULY_LANGUAGE_CONTENT,
+    )
+
+@app.route('/<lang_code>/menuly/support')
+def menuly_support(lang_code):
+    lang_key = (lang_code or "").lower()
+    if lang_key not in MENULY_LANGUAGE_CONTENT:
+        return redirect(url_for('menuly_support', lang_code='en'))
+    marketing_link = url_for('menuly_landing_lang', lang_code=lang_key)
+    return render_template(
+        'menuly/support.html',
+        marketing_link=marketing_link,
+        labels=MENULY_LANGUAGE_CONTENT[lang_key]["labels"],
+        copy=MENULY_SUPPORT_COPY[lang_key],
+        languages=MENULY_LANGUAGE_CONTENT,
         lang_code=lang_key,
     )
 

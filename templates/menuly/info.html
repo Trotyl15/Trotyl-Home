@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Menuly</title>
+<style>
+:root {
+  --ink: #1d1b22;
+  --muted: #5c5b66;
+  --accent: #D6373D;
+  --primary: #24648F;
+  --surface: #ffffff;
+  --stroke: #e8e5ef;
+  --shadow: 0 12px 35px rgba(14, 8, 36, 0.08);
+  --radius-lg: 20px;
+  --radius-sm: 12px;
+  --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+  body {
+    font-family: var(--font);
+    margin: 0;
+    color: var(--ink);
+    background: radial-gradient(circle at 10% 20%, rgba(214, 55, 61, 0.08) 0, transparent 25%),
+      radial-gradient(circle at 90% 10%, rgba(36, 100, 143, 0.12) 0, transparent 23%),
+      linear-gradient(135deg, #fffaf4, #f7f8ff);
+  }
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 42px 22px 56px;
+    min-height: calc(100vh - 98px);
+  }
+  .top-bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(214, 55, 61, 0.1);
+    color: #D6373D;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--stroke);
+    border-radius: var(--radius-lg);
+    padding: 26px;
+    box-shadow: var(--shadow);
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 22px;
+    align-items: center;
+  }
+  .hero-visual {
+    background: #fff;
+    border: 1px solid var(--stroke);
+    border-radius: 24px;
+    box-shadow: 0 10px 26px rgba(17, 13, 34, 0.06);
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-visual img {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 24px;
+    display: block;
+  }
+  h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+  }
+  p {
+    margin: 0 0 18px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .dropdown {
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--stroke);
+    font-weight: 700;
+    color: var(--ink);
+    background: #fff;
+  }
+  .top-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+  .back-link {
+    font-weight: 700;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  .links-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .link-secondary {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(36, 100, 143, 0.1);
+    text-decoration: none;
+    color: #24648F;
+    font-weight: 700;
+    border: 1px solid rgba(36, 100, 143, 0.2);
+    box-shadow: 0 6px 18px rgba(36, 100, 143, 0.18);
+  }
+  .link-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(36, 100, 143, 0.26);
+    text-decoration: none;
+  }
+  .app-title {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    color: #36b9e4;
+    margin-bottom: 4px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="wrap">
+  <div class="top-bar">
+    <a class="back-link" href="/">← {{ content.labels.home }}</a>
+    <span class="pill">Menuly</span>
+    <span class="top-actions">
+      <select class="dropdown" onchange="window.location.href=this.value">
+        {% for code, info in languages.items() %}
+          <option value="{{ url_for('menuly_landing_lang', lang_code=code) }}" {% if code == lang_code %}selected{% endif %}>
+            {{ info.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </span>
+  </div>
+
+  <div class="card">
+    <div class="hero">
+      <div>
+        <div class="app-title">Menuly</div>
+        <h1>{{ content.headline }}</h1>
+        <p>{{ content.blurb }}</p>
+
+        <div class="links-row">
+          <a class="link-secondary" href="{{ url_for('menuly_support', lang_code=lang_code) }}">{{ content.labels.support }}</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="{{ url_for('static', filename='img/menuly.png') }}" alt="Menuly app preview">
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
