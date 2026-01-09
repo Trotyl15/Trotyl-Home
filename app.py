@@ -2,7 +2,7 @@ import os
 from random import choices
 from secrets import choice
 from unicodedata import name
-from flask import Flask, redirect, render_template, request, request, redirect, url_for
+from flask import Flask, redirect, render_template, request, request, redirect, url_for, send_from_directory
 from flask_sqlalchemy import  SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField
@@ -23,6 +23,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL') or 'sqlite:///
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'thisissecret')
 db = SQLAlchemy(app)
+@app.route('/app-ads.txt')
+def app_ads_txt():
+    return send_from_directory('.', 'app-ads.txt', mimetype='text/plain')
+
 @app.route('/')
 def home():
 	return render_template('index.html')
@@ -88,10 +92,17 @@ def menuly_landing_lang(lang_code):
     if not content:
         return redirect(url_for('menuly_landing_lang', lang_code='en'))
 
+    region, badge_lang = APPLE_BADGE_LANG.get(lang_key, APPLE_BADGE_LANG["en"])
+    links = {
+        "app_store_link": f"https://apps.apple.com/{region}/app/menuly-visual-menu-translator/id6757213332?itscg=30200&itsct=apps_box_badge&mttnsubad=6757213332",
+        "app_store_badge": f"https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/{badge_lang}?releaseDate=1767830400",
+    }
+
     return render_template(
         'menuly/info.html',
         content=content,
         lang_code=lang_key,
+        links=links,
         languages=MENULY_LANGUAGE_CONTENT,
     )
 
