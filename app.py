@@ -16,6 +16,10 @@ from menuly_content import (
     MENULY_LANGUAGE_CONTENT,
     MENULY_SUPPORT_COPY,
 )
+from imgframe_content import (
+    IMGFRAME_LANGUAGE_CONTENT,
+    IMGFRAME_SUPPORT_COPY,
+)
 
 app = Flask(__name__, static_folder = 'src')
 # Use DATABASE_URL from environment if present, otherwise fall back to a local sqlite file
@@ -46,6 +50,14 @@ def menuly_root_redirect():
 @app.route('/menuly/support')
 def menuly_support_root_redirect():
     return redirect(url_for('menuly_support', lang_code='en'))
+
+@app.route('/imgframe')
+def imgframe_root_redirect():
+    return redirect(url_for('imgframe_landing_lang', lang_code='en'))
+
+@app.route('/imgframe/support')
+def imgframe_support_root_redirect():
+    return redirect(url_for('imgframe_support', lang_code='en'))
 
 @app.route('/<lang_code>/vitwo')
 def vitwo_landing_lang(lang_code):
@@ -118,6 +130,35 @@ def menuly_support(lang_code):
         labels=MENULY_LANGUAGE_CONTENT[lang_key]["labels"],
         copy=MENULY_SUPPORT_COPY[lang_key],
         languages=MENULY_LANGUAGE_CONTENT,
+        lang_code=lang_key,
+    )
+
+@app.route('/<lang_code>/imgframe')
+def imgframe_landing_lang(lang_code):
+    lang_key = (lang_code or "").lower()
+    content = IMGFRAME_LANGUAGE_CONTENT.get(lang_key)
+    if not content:
+        return redirect(url_for('imgframe_landing_lang', lang_code='en'))
+
+    return render_template(
+        'imgframe/info.html',
+        content=content,
+        lang_code=lang_key,
+        languages=IMGFRAME_LANGUAGE_CONTENT,
+    )
+
+@app.route('/<lang_code>/imgframe/support')
+def imgframe_support(lang_code):
+    lang_key = (lang_code or "").lower()
+    if lang_key not in IMGFRAME_LANGUAGE_CONTENT:
+        return redirect(url_for('imgframe_support', lang_code='en'))
+    marketing_link = url_for('imgframe_landing_lang', lang_code=lang_key)
+    return render_template(
+        'imgframe/support.html',
+        marketing_link=marketing_link,
+        labels=IMGFRAME_LANGUAGE_CONTENT[lang_key]["labels"],
+        copy=IMGFRAME_SUPPORT_COPY[lang_key],
+        languages=IMGFRAME_LANGUAGE_CONTENT,
         lang_code=lang_key,
     )
 

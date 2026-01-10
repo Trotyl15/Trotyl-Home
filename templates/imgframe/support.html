@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vitwo_support.css') }}">
+<title>ImgFrame Support</title>
+<style>
+  :root {
+    --accent: #EC4899;
+    --primary: #7C3AED;
+  }
+  body {
+    background: radial-gradient(circle at 10% 20%, rgba(236, 72, 153, 0.08) 0, transparent 25%),
+      radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.12) 0, transparent 23%),
+      linear-gradient(135deg, #fffaf4, #f7f8ff);
+  }
+  .pill {
+    background: rgba(236, 72, 153, 0.1);
+    color: #EC4899;
+  }
+  .btn-primary {
+    background: var(--primary);
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.35);
+  }
+  .btn-primary:hover {
+    box-shadow: 0 14px 34px rgba(124, 58, 237, 0.45);
+  }
+  .btn-secondary {
+    border: 1px solid rgba(236, 72, 153, 0.2);
+    box-shadow: 0 6px 18px rgba(236, 72, 153, 0.18);
+  }
+  .btn-secondary:hover {
+    box-shadow: 0 10px 24px rgba(236, 72, 153, 0.26);
+  }
+  .step-index {
+    background: rgba(124, 58, 237, 0.1);
+    color: #7C3AED;
+  }
+  .top-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-left: auto;
+  }
+  .dropdown {
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid #e8e5ef;
+    font-weight: 700;
+    color: #1d1b22;
+    background: #fff;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="support-shell">
+  <div class="top-bar">
+    <a href="{{ marketing_link }}">{{ copy.back }}</a>
+    <span class="pill">ImgFrame Support</span>
+    <span class="top-actions">
+      <select class="dropdown" onchange="window.location.href=this.value">
+        {% for code, info in languages.items() %}
+          <option value="{{ url_for('imgframe_support', lang_code=code) }}" {% if code == lang_code %}selected{% endif %}>
+            {{ info.name }}
+          </option>
+        {% endfor %}
+      </select>
+    </span>
+  </div>
+
+  <section class="hero">
+    <div>
+      <p class="pill" style="margin:0;">{{ copy.hero_tag }}</p>
+      <h1>{{ copy.hero_title }}</h1>
+      <p class="lede">{{ copy.hero_body }}</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ImgFrame%20Support&body=I%27d%20like%20support%20for%20ImgFrame:%0AIssue:%0ADevice%20model:%0A">{{ copy.cta_button }}</a>
+        <span class="muted">{{ copy.cta_hint }}</span>
+      </div>
+    </div>
+    <div class="demo-card">
+      <img src="{{ url_for('static', filename='img/imgframe.png') }}" alt="ImgFrame app preview" style="width: 100%; border-radius: 12px; display: block;">
+    </div>
+  </section>
+
+  <div class="grid two">
+    <div class="card">
+      <h2>{{ copy.how_title }}</h2>
+      <p>{{ copy.how_sub }}</p>
+      <ol class="step-list">
+        {% for step in copy.steps %}
+          <li>
+            <span class="step-index">{{ loop.index }}</span>
+            <div>
+              <strong>{{ step.title }}</strong>
+              <p>{{ step.body }}</p>
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>{{ copy.contact_title }}</h2>
+      <p>{{ copy.contact_body }}</p>
+      <a class="btn btn-primary" href="mailto:trotyl15@outlook.com?subject=ImgFrame%20Support&body=I%27d%20like%20support%20for%20ImgFrame:%0AIssue:%0ADevice%20model:%0A">{{ copy.contact_button }}</a>
+    </div>
+
+    <div class="card">
+      <h2>{{ copy.faq_title }}</h2>
+      <div class="faq-item">
+        <h3>{{ copy.faq_q1 }}</h3>
+        <p class="muted">{{ copy.faq_sub }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Built by Trotyl • ImgFrame</span>
+    <a href="/">{{ labels.home }}</a>
+  </div>
+</div>
+{% endblock %}
